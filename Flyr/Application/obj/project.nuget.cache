@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "lLJsSjnovMQ=",
+  "dgSpecHash": "c4pbEf1OdcA=",
   "success": true,
   "projectFilePath": "C:\\Users\\Diego\\Downloads\\Flyr\\Flyr\\Application\\Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Diego\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\Diego\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512"
+  ],
   "logs": []
 }

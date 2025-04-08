@@ -1,9 +1,20 @@
+using Flyr.Application.Mappings;
+using Flyr.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("FlyrDb");
+
+builder.Services.AddDbContext<FlyrDbContext>(options =>
+    options.UseSqlServer(connectionString)); 
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// para poder que el automaper funcione tuve que instalar una version mas antigua, la 12.0.0
+builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
 var app = builder.Build();
 
