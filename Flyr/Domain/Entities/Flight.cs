@@ -9,9 +9,7 @@ public class Flight
     public double Price { get; set; }
 
 
-    public int TransportId { get; set; } // FK
+    public Guid TransportId { get; set; } // FK
     public Transport Transport { get; set; } = default!;
 
-    public int JourneyId { get; set; } // FK
-    public Journey Journey { get; set; } = default!;
 }
