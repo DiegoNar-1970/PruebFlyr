@@ -11,6 +11,11 @@ namespace Flyr.Application.Mappings
             CreateMap<Transport, TransportDto>().ReverseMap();
             CreateMap<Flight, FlightDto>().ReverseMap();
             CreateMap<Journey, JourneyDto>().ReverseMap();
+
+            CreateMap<FlightWithTransportDto, Flight>()
+                .ForMember(dest => dest.TransportId, opt => opt.Ignore()) 
+                .ForMember(dest => dest.Transport, opt => opt.Ignore());
         }
+        
     }
 }

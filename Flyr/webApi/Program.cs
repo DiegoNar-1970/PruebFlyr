@@ -1,6 +1,7 @@
 using Flyr.Application.Mappings;
 using Flyr.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Flyr.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("FlyrDb");
@@ -15,9 +16,14 @@ builder.Services.AddSwaggerGen();
 
 // para poder que el automaper funcione tuve que instalar una version mas antigua, la 12.0.0
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
+builder.Services.AddScoped<JsonDataSeeder>();
 
 var app = builder.Build();
 
+var scope = app.Services.CreateScope();
+
+var seeder = scope.ServiceProvider.GetRequiredService<JsonDataSeeder>();
+await seeder.SeedAsync("../Infraestructure/Data/markets.json");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
