@@ -2,6 +2,8 @@ using Flyr.Application.Mappings;
 using Flyr.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Flyr.Infrastructure.Persistence;
+using Flyr.Domain.Contracts;
+using Flyr.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("FlyrDb");
@@ -18,6 +20,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 builder.Services.AddScoped<JsonDataSeeder>();
 
+
+//Repositories 
+builder.Services.AddScoped<IJourneyRepository, JourneyRepository>();
+builder.Services.AddScoped<IFlightRepository, FlightRepository>();
+builder.Services.AddScoped<ITransportRepository, TransportRepository>();    
+
+//app
 var app = builder.Build();
 
 var scope = app.Services.CreateScope();

@@ -1,12 +1,12 @@
 using Flyr.Domain.Entities;
 
-namespace Flyr.Domain.Repositories
+namespace Flyr.Domain.Contracts
 {
 
     public interface IJourneyRepository
     {
         Task<List<Journey>> GetAllJourneyAsync();
-        Task AddRangeAsync(List<Journey>journeys);
-        
+        Task <Journey?> GetByIdAsync(Guid id);
+        Task AddAsync(Journey journey);
     }
 }

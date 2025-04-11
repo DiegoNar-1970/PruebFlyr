@@ -20,8 +20,8 @@ public class JsonDataSeeder
     public async Task SeedAsync(string jsonFilePath)
     {
         // // We check if the entity in the database is empty.
-        // if (_context.Transports.Any())
-        //     return;
+        if (_context.Transports.Any())
+            return;
 
         //convert to json and deserialize to convert it into FlightWithTransportDto
         var jsonData = await File.ReadAllTextAsync(jsonFilePath);
