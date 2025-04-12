@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Flyr.Infrastructure.Persistence;
 using Flyr.Domain.Contracts;
 using Flyr.Infrastructure.Repositories;
+using Flyr.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("FlyrDb");
@@ -15,20 +16,25 @@ builder.Services.AddDbContext<FlyrDbContext>(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddControllers();
 
 // para poder que el automaper funcione tuve que instalar una version mas antigua, la 12.0.0
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 builder.Services.AddScoped<JsonDataSeeder>();
-
+builder.Services.AddScoped<JourneyService>();
+builder.Services.AddScoped<FlightService>();
+builder.Services.AddScoped<TransportService>();
 
 //Repositories 
 builder.Services.AddScoped<IJourneyRepository, JourneyRepository>();
 builder.Services.AddScoped<IFlightRepository, FlightRepository>();
 builder.Services.AddScoped<ITransportRepository, TransportRepository>();    
 
+//
+
 //app
 var app = builder.Build();
-
+app.MapControllers();
 var scope = app.Services.CreateScope();
 
 var seeder = scope.ServiceProvider.GetRequiredService<JsonDataSeeder>();

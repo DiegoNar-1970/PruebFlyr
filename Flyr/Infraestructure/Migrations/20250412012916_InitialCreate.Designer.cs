@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraestructure.Migrations
 {
     [DbContext(typeof(FlyrDbContext))]
-    [Migration("20250409210542_InitialCreate")]
+    [Migration("20250412012916_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -73,6 +73,9 @@ namespace Infraestructure.Migrations
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

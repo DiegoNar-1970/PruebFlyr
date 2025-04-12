@@ -71,6 +71,9 @@ namespace Infraestructure.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Journeys");
